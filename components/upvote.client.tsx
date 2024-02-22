@@ -33,7 +33,7 @@ export default function Upvote({ voting, id }: { voting: number; id: string }) {
     id,
     voting,
   };
-
+  // @ts-expect-error
   const [state, dispatch] = useFormState(upvoteAction, initialState);
   // const { pending } = useFormStatus();
 
@@ -46,7 +46,7 @@ export default function Upvote({ voting, id }: { voting: number; id: string }) {
           width={"24"}
           height={"24"}
         />
-        <p className="pl-2">{state.voting} </p>
+        <p className="pl-2">{state?.voting} </p>
       </div>
       <SubmitButton />
     </form>
