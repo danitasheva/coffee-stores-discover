@@ -63,14 +63,15 @@ export async function createCoffeeStore(
   }
 }
 
-export async function updateCoffeeStore(id: string) {
+export const updateCoffeeStore = async (id: string) => {
   try {
     if (id) {
       const records = await findRecordByFilter(id);
       if (records.length !== 0) {
         const record = records[0];
         const updatedVoting = record.voting + 1;
-        const updateRecords = await table.update([
+
+        const updatedRecords = await table.update([
           {
             id: record.recordId,
             fields: {
@@ -78,17 +79,18 @@ export async function updateCoffeeStore(id: string) {
             },
           },
         ]);
-        if (updateRecords.length > 0) {
-          console.log("Updated a store with id", id);
-          return getMinifiedRecords(updateRecords);
+
+        if (updatedRecords.length > 0) {
+          console.log("Created a store with id", id);
+          return getMinifiedRecords(updatedRecords);
         }
       } else {
-        console.log("Coffee store does not exists");
+        console.log("Coffee store does not exist");
       }
     } else {
-      console.error("Missing store id");
+      console.error("Store id is missing");
     }
-  } catch (err) {
-    console.error("Error upvoting a coffee store", err);
+  } catch (error) {
+    console.error("Error upvoting a coffee store", error);
   }
-}
+};

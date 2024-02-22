@@ -1,4 +1,5 @@
 "use client";
+
 import { upvoteAction } from "@/actions";
 import Image from "next/image";
 
@@ -9,17 +10,17 @@ export function SubmitButton() {
 
   return (
     <button
-      className="bg-purple-951 min-w-[120px]"
       type="submit"
+      className="bg-purple-951 min-w-[120px]"
       disabled={pending}
       aria-disabled={pending}
     >
       {pending ? (
         <Image
           src="/static/icons/loading-spinner.svg"
-          alt="loading"
-          width={"30"}
-          height={"30"}
+          width="30"
+          height="30"
+          alt="Loading"
           className="m-auto"
         />
       ) : (
@@ -28,6 +29,7 @@ export function SubmitButton() {
     </button>
   );
 }
+
 export default function Upvote({ voting, id }: { voting: number; id: string }) {
   const initialState = {
     id,
@@ -35,19 +37,19 @@ export default function Upvote({ voting, id }: { voting: number; id: string }) {
   };
   // @ts-expect-error
   const [state, dispatch] = useFormState(upvoteAction, initialState);
-  // const { pending } = useFormStatus();
 
   return (
     <form action={dispatch}>
       <div className="mb-6 flex">
         <Image
           src="/static/icons/star.svg"
+          width="24"
+          height="24"
           alt="star icon"
-          width={"24"}
-          height={"24"}
         />
-        <p className="pl-2">{state?.voting} </p>
+        <p className="pl-2">{state?.voting}</p>
       </div>
+
       <SubmitButton />
     </form>
   );
