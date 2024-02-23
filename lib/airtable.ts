@@ -2,7 +2,7 @@ import { AirtableRecordType, CoffeeStoreType } from "@/types";
 
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN }).base(
-  "appawIIKUhAf0fMju"
+  "appYJRNBldabuI4c1"
 );
 
 const table = base("coffee-stores");
@@ -26,10 +26,10 @@ const findRecordByFilter = async (id: string) => {
   return getMinifiedRecords(findRecords);
 };
 
-export const createCoffeeStore = async (
+export async function createCoffeeStore(
   coffeeStore: CoffeeStoreType,
   id: string
-) => {
+) {
   const { name, address, voting = 0, image } = coffeeStore;
 
   try {
@@ -56,22 +56,21 @@ export const createCoffeeStore = async (
         return records;
       }
     } else {
-      console.error("Store id is missing");
+      console.error("Missing store id");
     }
-  } catch (error) {
-    console.error("Error creating or finding a store", error);
+  } catch (err) {
+    console.error("Error creating or finding a store", err);
   }
-};
+}
 
-export const updateCoffeeStore = async (id: string) => {
+export async function updateCoffeeStore(id: string) {
   try {
     if (id) {
       const records = await findRecordByFilter(id);
       if (records.length !== 0) {
         const record = records[0];
         const updatedVoting = record.voting + 1;
-
-        const updatedRecords = await table.update([
+        const updateRecords = await table.update([
           {
             id: record.recordId,
             fields: {
@@ -79,18 +78,17 @@ export const updateCoffeeStore = async (id: string) => {
             },
           },
         ]);
-
-        if (updatedRecords.length > 0) {
-          console.log("Created a store with id", id);
-          return getMinifiedRecords(updatedRecords);
+        if (updateRecords.length > 0) {
+          console.log("Updated a store with id", id);
+          return getMinifiedRecords(updateRecords);
         }
       } else {
-        console.log("Coffee store does not exist");
+        console.log("Coffee store does not exists");
       }
     } else {
-      console.error("Store id is missing");
+      console.error("Missing store id");
     }
-  } catch (error) {
-    console.error("Error upvoting a coffee store", error);
+  } catch (err) {
+    console.error("Error upvoting a coffee store", err);
   }
-};
+}

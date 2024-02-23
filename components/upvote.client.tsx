@@ -37,7 +37,7 @@ export default function Upvote({ voting, id }: { voting: number; id: string }) {
   };
 
   const [state, dispatch] = useFormState(upvoteAction, initialState);
-
+  console.log("state", state);
   return (
     <form action={dispatch}>
       <div className="mb-6 flex">
