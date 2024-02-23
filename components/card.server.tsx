@@ -22,12 +22,12 @@ export default function Card({ name, image, href }: CardType) {
           <Image
             className="rounded-lg shadow-lg"
             src={image}
-            alt={name}
+            alt={"Coffee store image"}
             layout="fill"
-            // width={260}
-            // height={160}
+            objectFit="cover"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8/+ZNPQAIoQM4xp5zkgAAAABJRU5ErkJggg=="
             placeholder="blur"
+            priority={true}
           />
         </div>
       </div>

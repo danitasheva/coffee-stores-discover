@@ -23,7 +23,7 @@ const config: Config = {
         },
       },
       backgroundImage: {
-        gradient: "url('/static/background.png')",
+        gradient: "url('/static/background.webp')",
       },
     },
   },

@@ -85,6 +85,7 @@ export default async function Page(props: {
             className="max-h-[420px] min-w-full max-w-full rounded-lg border-2 sepia lg:max-w-[470px] object-cover"
             alt={"Coffee Store Image"}
             objectFit="cover"
+            priority={true}
           />
         </div>
         <div className={`glass mt-12 flex-col rounded-lg p-4 lg:mt-48`}>
