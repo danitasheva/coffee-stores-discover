@@ -37,7 +37,7 @@ export default async function Home() {
         <h2 className="mt-8 pb-8 text-4xl font-bold text-white">
           Calgary Downtown Stores
         </h2>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-2 lg:grid-cols-3 lg:gap-6">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-12">
           {data?.map((coffeeStore: CoffeeStoreType, index: number) => (
             <Card
               key={`${coffeeStore.name}-${coffeeStore.id}`}
