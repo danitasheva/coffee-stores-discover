@@ -2,7 +2,7 @@ import { AirtableRecordType, CoffeeStoreType } from "@/types";
 
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.AIRTABLE_TOKEN }).base(
-  "appYJRNBldabuI4c1"
+  "appawIIKUhAf0fMju"
 );
 
 const table = base("coffee-stores");
@@ -26,10 +26,10 @@ const findRecordByFilter = async (id: string) => {
   return getMinifiedRecords(findRecords);
 };
 
-export async function createCoffeeStore(
+export const createCoffeeStore = async (
   coffeeStore: CoffeeStoreType,
   id: string
-) {
+) => {
   const { name, address, voting = 0, image } = coffeeStore;
 
   try {
@@ -56,12 +56,12 @@ export async function createCoffeeStore(
         return records;
       }
     } else {
-      console.error("Missing store id");
+      console.error("Store id is missing");
     }
-  } catch (err) {
-    console.error("Error creating or finding a store", err);
+  } catch (error) {
+    console.error("Error creating or finding a store", error);
   }
-}
+};
 
 export const updateCoffeeStore = async (id: string) => {
   try {
